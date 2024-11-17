@@ -148,16 +148,6 @@ class ConfigManager:
         return self.config.getint("Settings", "recent_days", fallback=30)
 
     @property
-    def domain_blacklist(self):
-        return [
-            domain.strip()
-            for domain in self.config.get(
-                "Settings", "domain_blacklist", fallback=""
-            ).split(",")
-            if domain.strip()
-        ]
-
-    @property
     def url_keywords_blacklist(self):
         return [
             keyword.strip()
@@ -311,6 +301,10 @@ class ConfigManager:
     @property
     def resolution_weight(self):
         return self.config.getfloat("Settings", "resolution_weight", fallback=0.5)
+
+    @property
+    def open_empty_category(self):
+        return self.config.getboolean("Settings", "open_empty_category", fallback=True)
 
     def load(self):
         """
